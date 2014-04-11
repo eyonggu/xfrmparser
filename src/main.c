@@ -116,7 +116,7 @@ void print_xfrm_id(void *p, char *label, int depth)
 
     PRINT(depth,  "%s {", label);
     PRINT(depth+1, "daddr = %s", inet_ntoa(*(struct in_addr*)&(id->daddr.a4)));
-    PRINT(depth+1, "spi = %u",   ntohl(id->spi));
+    PRINT(depth+1, "spi   = %u", ntohl(id->spi));
     PRINT(depth+1, "proto = %u", id->proto);
     PRINT(depth,  "}");
 }
@@ -126,17 +126,17 @@ void print_xfrm_selector(void *p, char *label, int depth)
     struct xfrm_selector *selector = (struct xfrm_selector *)p;
 
     PRINT(depth,  "%s {", label);
-    PRINT(depth+1, "daddr = %s",       inet_ntoa(*(struct in_addr*)&(selector->daddr.a4)));
-    PRINT(depth+1, "saddr = %s",       inet_ntoa(*(struct in_addr*)&(selector->saddr.a4)));
-    PRINT(depth+1, "dport = %u",       ntohs(selector->dport));
-    PRINT(depth+1, "dport_mask = %u",  ntohs(selector->dport_mask));
-    PRINT(depth+1, "sport = %u",       ntohs(selector->sport));
-    PRINT(depth+1, "sport_mask = %u",  ntohs(selector->sport_mask));
-    PRINT(depth+1, "family = %u",      selector->family);
+    PRINT(depth+1, "daddr       = %s", inet_ntoa(*(struct in_addr*)&(selector->daddr.a4)));
+    PRINT(depth+1, "saddr       = %s", inet_ntoa(*(struct in_addr*)&(selector->saddr.a4)));
+    PRINT(depth+1, "dport       = %u", ntohs(selector->dport));
+    PRINT(depth+1, "dport_mask  = %u", ntohs(selector->dport_mask));
+    PRINT(depth+1, "sport       = %u", ntohs(selector->sport));
+    PRINT(depth+1, "sport_mask  = %u", ntohs(selector->sport_mask));
+    PRINT(depth+1, "family      = %u", selector->family);
     PRINT(depth+1, "prefixlen_d = %u", selector->prefixlen_d);
     PRINT(depth+1, "prefixlen_s = %u", selector->prefixlen_s);
-    PRINT(depth+1, "proto = %u",       selector->proto);
-    PRINT(depth+1, "ifindex = %d",     selector->ifindex);
+    PRINT(depth+1, "proto       = %u", selector->proto);
+    PRINT(depth+1, "ifindex     = %d", selector->ifindex);
     //__kernel_uid32_t	user;
     PRINT(depth,  "}");
 }
@@ -146,10 +146,10 @@ void print_xfrm_lifetime_cfg(void *p, char *label, int depth)
     struct xfrm_lifetime_cfg *lifetime_cfg = (struct xfrm_lifetime_cfg *)p;
 
     PRINT(depth,  "%s {", label);
-    PRINT(depth+1, "soft_byte_limit = %llu",          lifetime_cfg->soft_byte_limit);
-    PRINT(depth+1, "hard_byte_limit = %llu",          lifetime_cfg->hard_byte_limit);
-    PRINT(depth+1, "soft_packet_limit = %llu",        lifetime_cfg->soft_packet_limit);
-    PRINT(depth+1, "hard_packet_limit = %llu",        lifetime_cfg->hard_packet_limit);
+    PRINT(depth+1, "soft_byte_limit          = %llu", lifetime_cfg->soft_byte_limit);
+    PRINT(depth+1, "hard_byte_limit          = %llu", lifetime_cfg->hard_byte_limit);
+    PRINT(depth+1, "soft_packet_limit        = %llu", lifetime_cfg->soft_packet_limit);
+    PRINT(depth+1, "hard_packet_limit        = %llu", lifetime_cfg->hard_packet_limit);
     PRINT(depth+1, "soft_add_expires_seconds = %llu", lifetime_cfg->soft_add_expires_seconds);
     PRINT(depth+1, "hard_add_expires_seconds = %llu", lifetime_cfg->hard_add_expires_seconds);
     PRINT(depth+1, "soft_use_expires_seconds = %llu", lifetime_cfg->soft_use_expires_seconds);
@@ -162,8 +162,8 @@ void print_xfrm_lifetime_cur(void *p, char *label, int depth)
     struct xfrm_lifetime_cur *lifetime_cur = (struct xfrm_lifetime_cur *)p;
 
     PRINT(depth,  "%s {", label);
-    PRINT(depth+1, "bytes = %llu",    lifetime_cur->bytes);
-    PRINT(depth+1, "packets = %llu",  lifetime_cur->packets);
+    PRINT(depth+1, "bytes    = %llu", lifetime_cur->bytes);
+    PRINT(depth+1, "packets  = %llu", lifetime_cur->packets);
     PRINT(depth+1, "add_time = %llu", lifetime_cur->add_time);
     PRINT(depth+1, "use_time = %llu", lifetime_cur->use_time);
     PRINT(depth,  "}");
@@ -174,8 +174,8 @@ void print_xfrm_stats(void *p, char *label, int depth)
     struct xfrm_stats *stats = (struct xfrm_stats *)p;
 
     PRINT(depth,  "%s {", label);
-    PRINT(depth+1, "replay_window = %u",    stats->replay_window);
-    PRINT(depth+1, "replay = %u",           stats->replay);
+    PRINT(depth+1, "replay_window    = %u", stats->replay_window);
+    PRINT(depth+1, "replay           = %u", stats->replay);
     PRINT(depth+1, "integrity_failed = %u", stats->integrity_failed);
     PRINT(depth,  "}");
 }
@@ -186,9 +186,9 @@ void print_xfrm_algo(void *p, char *label, int depth, size_t size)
     struct xfrm_algo *algo = (struct xfrm_algo *)p;
 
     PRINT(depth,  "%s(%dB)", label, size);
-    PRINT(depth+1, "alg_name = %s", algo->alg_name);
+    PRINT(depth+1, "alg_name    = %s", algo->alg_name);
     PRINT(depth+1, "alg_key_len = %u", algo->alg_key_len);
-    PRINT(depth+1, "alg_key = %s", byte_to_str((uint8_t *)algo->alg_key, algo->alg_key_len/8));
+    PRINT(depth+1, "alg_key     = %s", byte_to_str((uint8_t *)algo->alg_key, algo->alg_key_len/8));
 }
 
 void print_xfrm_mark(void *p, char *label, int depth, size_t size)
@@ -206,15 +206,15 @@ void print_xfrm_tmpl(void *p, char *label, int depth, size_t size)
 
     PRINT(depth,  "%s(%dB)", label, size);
     print_xfrm_id(p+OFFSET(struct xfrm_user_tmpl, id),  "id",  depth+1);
-    PRINT(depth+1, "family = %u", user_tmpl->family);
-    PRINT(depth+1, "saddr = %s",  inet_ntoa(*(struct in_addr*)&(user_tmpl->saddr.a4)));
-    PRINT(depth+1, "reqid = %u", user_tmpl->reqid);
-    PRINT(depth+1, "mode = %u(%s)", user_tmpl->mode, xfrm_mode_str[user_tmpl->mode]);
-    PRINT(depth+1, "share = %u", user_tmpl->share);
-    PRINT(depth+1, "optional = %u", user_tmpl->optional);
-    PRINT(depth+1, "aalgos = %u", user_tmpl->aalgos);
-    PRINT(depth+1, "ealgos = %u", user_tmpl->ealgos);
-    PRINT(depth+1, "calgos = %u", user_tmpl->calgos);
+    PRINT(depth+1, "family   = %u",     user_tmpl->family);
+    PRINT(depth+1, "saddr    = %s",     inet_ntoa(*(struct in_addr*)&(user_tmpl->saddr.a4)));
+    PRINT(depth+1, "reqid    = %u",     user_tmpl->reqid);
+    PRINT(depth+1, "mode     = %u(%s)", user_tmpl->mode, xfrm_mode_str[user_tmpl->mode]);
+    PRINT(depth+1, "share    = %u",     user_tmpl->share);
+    PRINT(depth+1, "optional = %u",     user_tmpl->optional);
+    PRINT(depth+1, "aalgos   = %u",     user_tmpl->aalgos);
+    PRINT(depth+1, "ealgos   = %u",     user_tmpl->ealgos);
+    PRINT(depth+1, "calgos   = %u",     user_tmpl->calgos);
 }
 
 void print_rta(struct rtattr *rta)
@@ -248,16 +248,27 @@ void print_xfrm_usersa_info(void *p, char *label, int depth)
     PRINT(depth,  "%s(%uB)", label, NLMSG_ALIGN(sizeof(struct xfrm_usersa_info)));
     print_xfrm_selector(p+OFFSET(struct xfrm_usersa_info, sel), "sel", depth+1);
     print_xfrm_id(      p+OFFSET(struct xfrm_usersa_info, id),  "id",  depth+1);
-    PRINT(depth+1, "saddr = %s", inet_ntoa(*(struct in_addr*)&(usersa_info->saddr.a4)));
+    PRINT(depth+1, "saddr         = %s",     inet_ntoa(*(struct in_addr*)&(usersa_info->saddr.a4)));
     print_xfrm_lifetime_cfg(p+OFFSET(struct xfrm_usersa_info, lft), "lft", depth+1);
     print_xfrm_lifetime_cur(p+OFFSET(struct xfrm_usersa_info, curlft), "curlft", depth+1);
     print_xfrm_stats(p+OFFSET(struct xfrm_usersa_info, stats), "stats", depth+1);
-    PRINT(depth+1, "seq = %u",           usersa_info->seq);
-    PRINT(depth+1, "reqid = %u",         usersa_info->reqid);
-    PRINT(depth+1, "family = %u",        usersa_info->family);
-    PRINT(depth+1, "mode = %u(%s)",      usersa_info->mode, xfrm_mode_str[usersa_info->mode]);
-    PRINT(depth+1, "replay_window = %u", usersa_info->replay_window);
-    PRINT(depth+1, "flags = %u",         usersa_info->flags);
+    PRINT(depth+1, "seq           = %u",     usersa_info->seq);
+    PRINT(depth+1, "reqid         = %u",     usersa_info->reqid);
+    PRINT(depth+1, "family        = %u",     usersa_info->family);
+    PRINT(depth+1, "mode          = %u(%s)", usersa_info->mode, xfrm_mode_str[usersa_info->mode]);
+    PRINT(depth+1, "replay_window = %u",     usersa_info->replay_window);
+    PRINT(depth+1, "flags         = %u",     usersa_info->flags);
+}
+
+void print_xfrm_usersa_id(void *p, char *label, int depth)
+{
+    struct xfrm_usersa_id  *usersa_id = (struct xfrm_usersa_id *)p;
+
+    PRINT(depth,  "%s(%uB)", label, NLMSG_ALIGN(sizeof(struct xfrm_usersa_id)));
+    PRINT(depth+1, "daddr  = %s", inet_ntoa(*(struct in_addr*)&(usersa_id->daddr.a4)));
+    PRINT(depth+1, "spi    = %u", ntohl(usersa_id->spi));
+    PRINT(depth+1, "family = %u", usersa_id->family);
+    PRINT(depth+1, "proto  = %u", usersa_id->proto);
 }
 
 void print_xfrm_userpolicy_info(void *p, char *label, int depth)
@@ -268,12 +279,31 @@ void print_xfrm_userpolicy_info(void *p, char *label, int depth)
     print_xfrm_selector(p+OFFSET(struct xfrm_userpolicy_info, sel), "sel", depth+1);
     print_xfrm_lifetime_cfg(p+OFFSET(struct xfrm_userpolicy_info, lft), "lft", depth+1);
     print_xfrm_lifetime_cur(p+OFFSET(struct xfrm_userpolicy_info, curlft), "curlft", depth+1);
-    PRINT(depth+1, "priority = %u",  userpolicy_info->priority);
-    PRINT(depth+1, "index = %u",     userpolicy_info->index);
-    PRINT(depth+1, "dir = %u(%s)",   userpolicy_info->dir, xfrm_dir_str[userpolicy_info->dir]);
-    PRINT(depth+1, "action = %u(%s)", userpolicy_info->action, xfrm_action_str[userpolicy_info->action]);
-    PRINT(depth+1, "flags = %u",     userpolicy_info->flags);
-    PRINT(depth+1, "share = %u",     userpolicy_info->share);
+    PRINT(depth+1, "priority = %u",     userpolicy_info->priority);
+    PRINT(depth+1, "index    = %u",     userpolicy_info->index);
+    PRINT(depth+1, "dir      = %u(%s)", userpolicy_info->dir, xfrm_dir_str[userpolicy_info->dir]);
+    PRINT(depth+1, "action   = %u(%s)", userpolicy_info->action, xfrm_action_str[userpolicy_info->action]);
+    PRINT(depth+1, "flags    = %u",     userpolicy_info->flags);
+    PRINT(depth+1, "share    = %u",     userpolicy_info->share);
+}
+
+void print_xfrm_userpolicy_id(void *p, char *label, int depth)
+{
+
+    struct xfrm_userpolicy_id *userpolicy_id = (struct xfrm_userpolicy_id *)p;
+    PRINT(depth,  "%s(%uB)", label, NLMSG_ALIGN(sizeof(struct xfrm_userpolicy_id)));
+    print_xfrm_selector(p+OFFSET(struct xfrm_userpolicy_id, sel), "sel", depth+1);
+    PRINT(depth+1, "index = %u",     userpolicy_id->index);
+    PRINT(depth+1, "dir   = %u(%s)", userpolicy_id->dir, xfrm_dir_str[userpolicy_id->dir]);
+}
+
+void print_xfrm_userspi_info(void *p, char *label, int depth)
+{
+    struct xfrm_userspi_info *userspi_info = (struct xfrm_userspi_info *)p;
+    PRINT(depth,  "%s(%uB)", label, NLMSG_ALIGN(sizeof(struct xfrm_userspi_info)));
+    print_xfrm_usersa_info(p+OFFSET(struct xfrm_userspi_info, info), "info", depth+1);
+    PRINT(depth+1, "min = %u",     userspi_info->min);
+    PRINT(depth+1, "max = %u",     userspi_info->max);
 }
 
 /************************** XXX ****************************/
@@ -281,20 +311,32 @@ void print_xfrmmsg(void *p)
 {
     switch(g_nlmsghdr->nlmsg_type) {
         case XFRM_MSG_NEWSA:
-        case XFRM_MSG_DELSA:
-        case XFRM_MSG_GETSA:
         case XFRM_MSG_UPDSA:
             print_xfrm_usersa_info(p, "xfrm_usersa_info", 0);
             g_offset = NLMSG_LENGTH(sizeof(struct xfrm_usersa_info));
             break;
 
+        case XFRM_MSG_GETSA:
+        case XFRM_MSG_DELSA:
+            print_xfrm_usersa_id(p, "xfrm_usersa_id", 0);
+            g_offset = NLMSG_LENGTH(sizeof(struct xfrm_usersa_id));
+            break;
+
         case XFRM_MSG_NEWPOLICY:
-        case XFRM_MSG_DELPOLICY:
-        case XFRM_MSG_GETPOLICY:
+        case XFRM_MSG_UPDPOLICY:
             print_xfrm_userpolicy_info(p, "xfrm_userpolicy_info", 0);
             g_offset = NLMSG_LENGTH(sizeof(struct xfrm_userpolicy_info));
             break;
 
+        case XFRM_MSG_GETPOLICY:
+        case XFRM_MSG_DELPOLICY:
+            print_xfrm_userpolicy_id(p, "xfrm_userpolicy_id", 0);
+            g_offset = NLMSG_LENGTH(sizeof(struct xfrm_userpolicy_id));
+            break;
+
+        case XFRM_MSG_ALLOCSPI:
+            print_xfrm_userspi_info(p, "xfrm_userspi_info", 0);
+            g_offset = NLMSG_LENGTH(sizeof(struct xfrm_userspi_info));
         default:
             break;
     }
@@ -333,17 +375,21 @@ void print_msg(void *p)
 /************************** MAIN *************************/
 void usage()
 {
-    printf("Usage: xfrmparser hexdumpfile\n");
+    printf("Usage: xfrmparser [file]\n");
+    printf("\t If file is not specified, read from stdin\n");
     exit(1);
 }
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2) {
+    if (argc == 1) {
+        yyin = stdin;
+    } else if (argc == 2) {
+        yyin = fopen(argv[1], "r");
+    } else if (argc > 2) {
         usage();
     }
 
-    yyin = fopen(argv[1], "r");
     yylex();
 
     g_nlmsghdr = (struct nlmsghdr *)msg;
