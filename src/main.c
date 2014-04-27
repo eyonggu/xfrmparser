@@ -258,6 +258,16 @@ void print_xfrm_usersa_info(void *p, char *label, int depth)
     PRINT(depth+1, "mode          = %u(%s)", usersa_info->mode, xfrm_mode_str[usersa_info->mode]);
     PRINT(depth+1, "replay_window = %u",     usersa_info->replay_window);
     PRINT(depth+1, "flags         = %u",     usersa_info->flags);
+
+    /* TODO */
+    /* #define XFRM_STATE_NOECN	1 */
+    /* #define XFRM_STATE_DECAP_DSCP	2 */
+    /* #define XFRM_STATE_NOPMTUDISC	4 */
+    /* #define XFRM_STATE_WILDRECV	8 */
+    /* #define XFRM_STATE_ICMP		16 */
+    /* #define XFRM_STATE_AF_UNSPEC	32 */
+    /* #define XFRM_STATE_ALIGN4	64 */
+    /* #define XFRM_STATE_ESN		128 */
 }
 
 void print_xfrm_usersa_id(void *p, char *label, int depth)
